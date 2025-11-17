@@ -1,35 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AppLayout } from './components/layout/AppLayout';
+import { useLiveNavigation } from './hooks/useLiveNavigation';
+import { useRouteCalculator } from './hooks/useRouteCalculator';
+import { useUserLocation } from './hooks/useUserLocation';
 
-function App() {
-  const [count, setCount] = useState(0)
+// 최상위 App 컴포넌트
+export default function App(){
+  useRouteCalculator(); // 출발/도착 변경 시 거리/시간 계산
+  useUserLocation(); // 추가: 앱 진입 시 한 번 현재 위치를 받아 출발지 기본값으로 사용
+  useLiveNavigation(); // 추가: 안내 시작 시 실시간 위치 추적
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+  useRouteCalculator(); // 출발/도착 변경 시 거리/시간 계산
 
-export default App
+  return <AppLayout />;
+};
