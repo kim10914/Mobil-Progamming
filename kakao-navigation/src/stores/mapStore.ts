@@ -19,6 +19,8 @@ export interface RouteInfo {
     path: LatLng[]; // 폴리라인 경로 (간단히 [출발, 도착])
     distanceMeters: number; // 거리(m)
     durationMinutes: number; // 예상 소요시간(분)
+    summaryText?: string; // 요약 텍스트(예: "5km, 10분")
+    provider?: 'approx' | 'kakao'; // approx : 직선, kakao : Directions 기반
 }
 
 // 출발/도착 역할
